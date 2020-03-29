@@ -1,3 +1,6 @@
+% Update: March 2020
+% Navid Haghdadi
+
 function [GriddedData,NearestPoint]=GriddedDataExtractor(Lat,Long,StartDate,EndDate)
 % To extract solar data for one location
 
