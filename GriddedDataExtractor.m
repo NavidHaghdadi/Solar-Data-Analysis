@@ -1,7 +1,7 @@
 % Update: March 2020
 % Navid Haghdadi
 
-function [GriddedData,NearestPoint]=GriddedDataExtractor(Lat,Long,StartDate,EndDate)
+function [GriddedData,NearestPoint]=GriddedDataExtractor(Lat,Long,StartDate,EndDate,Datafolder)
 % To extract solar data for one location
 
 % Example:
@@ -9,7 +9,10 @@ function [GriddedData,NearestPoint]=GriddedDataExtractor(Lat,Long,StartDate,EndD
 % EndDate=20020305;
 % Lat=-30.016667;
 % Long=148.116667;
-% [GriddedData,NearestPoint]=GriddedDataExtractor(Lat,Long,StartDate,EndDate)
+
+% Datafolder='C:\Codes\Solar-Data-Analysis\Output';
+% [GriddedData,NearestPoint]=GriddedDataExtractor(Lat,Long,StartDate,EndDate,Datafolder)
+
 Lat=Lat(:);
 Long=Long(:);
 [Long1,Lat1]=meshgrid(112.025:0.05:153.95,-10.075:-0.05:-43.975000);
@@ -44,7 +47,7 @@ for i=1:size(AllYM,1)
     i
     mm=['0',num2str(AllYM(i,2))];mm=mm(end-1:end);
     try
-        NewData=load(['d:\Database\BOM_Weather_Data\Grid Satellite Hourly DNI GHI\NewMatFiles\GHI_',num2str(AllYM(i,1)),'_',mm,'.mat']);
+        NewData=load([Datafolder,'\GHI_',num2str(AllYM(i,1)),'_',mm,'.mat']);
         [~,bT,cT]=intersect(TS,NewData.TimeStamp);
         for i_ll=1:size(Lat,1)
             GriddedGHI(bT,i_ll)=NewData.SolarData(Lat_ind(i_ll,1),Long_ind(i_ll,1),cT);
@@ -53,7 +56,7 @@ for i=1:size(AllYM,1)
     end
     
     try
-        NewData=load(['d:\Database\BOM_Weather_Data\Grid Satellite Hourly DNI GHI\NewMatFiles\DNI_',num2str(AllYM(i,1)),'_',mm,'.mat']);
+        NewData=load([Datafolder,'\DNI_',num2str(AllYM(i,1)),'_',mm,'.mat']);
         [~,bT,cT]=intersect(TS,NewData.TimeStamp);
         for i_ll=1:size(Lat,1)
             

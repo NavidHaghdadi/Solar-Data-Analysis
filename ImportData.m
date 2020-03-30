@@ -1,7 +1,9 @@
 % Aug2016
 % Update March 2020
 % Navid Haghdadi
-% This file is used for importing data from text file to my new mat files
+% This file is used for importing data from text file to my new mat files.
+% If you need data for specific points, you need to then use the
+% GriddedDataExtractor function. Refer to Example for more info.
 
 InputFolderPath='C:\Codes\Solar-Data-Analysis\Input'; % this folder should have folders: HOURLY_GHI and HOURLY_DNI and in
 % each folder, each year should be in a folder
